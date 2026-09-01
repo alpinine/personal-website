@@ -1,0 +1,67 @@
+name: Deploy site to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static website
+        run: npm run build
+
+      - name: Prepare clean page URLs
+        shell: bash
+        run: |
+          while IFS= read -r -d '' page; do
+            route_name="$(basename "$page" .html)"
+            mkdir -p "dist/client/$route_name"
+            cp "$page" "dist/client/$route_name/index.html"
+          done < <(find dist/client -maxdepth 1 -type f -name '*.html' ! -name 'index.html' ! -name '404.html' -print0)
+          touch dist/client/.nojekyll
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload website
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist/client
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
