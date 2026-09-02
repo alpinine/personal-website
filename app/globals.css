@@ -422,9 +422,13 @@ footer {
     justify-content: flex-start;
   }
 
-  .nav-button {
+  nav .nav-button {
     min-width: 0;
     flex: 1 1 130px;
+  }
+
+  .site-header > .nav-button {
+    flex: none;
   }
 
   .intro-section {
@@ -434,6 +438,11 @@ footer {
   .portrait-wrap {
     width: min(100%, 520px);
     order: -1;
+  }
+
+  .portrait-wrap img {
+    aspect-ratio: 3 / 2;
+    object-position: center;
   }
 
   .focus-grid {
@@ -457,6 +466,10 @@ footer {
 
   .site-header {
     padding: 22px 16px 28px;
+  }
+
+  .site-header > .nav-button {
+    width: 100%;
   }
 
   nav {
@@ -488,7 +501,7 @@ footer {
   }
 
   .portrait-wrap {
-    width: 78%;
+    width: 100%;
   }
 
   .focus-card > p {
