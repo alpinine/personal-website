@@ -209,11 +209,12 @@ nav {
 
 .portrait-wrap img {
   width: 100%;
-  aspect-ratio: 4 / 5;
+  height: auto;
+  aspect-ratio: auto;
   display: block;
   border: var(--line) solid var(--ink);
-  object-fit: cover;
-  object-position: 52% center;
+  object-fit: contain;
+  object-position: center;
   filter: saturate(0.92) contrast(1.03);
 }
 
@@ -438,13 +439,6 @@ footer {
   .portrait-wrap {
     width: min(100%, 520px);
     order: -1;
-  }
-
-  .portrait-wrap img {
-    height: auto;
-    aspect-ratio: auto;
-    object-fit: contain;
-    object-position: center;
   }
 
   .focus-grid {
