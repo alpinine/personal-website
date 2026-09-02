@@ -81,10 +81,13 @@ export default function Home() {
 
         <figure className="portrait-wrap">
           <img
-            src="/jack-schroeder.jpg"
+            src="/jack-schroeder-1600.jpg"
+            srcSet="/jack-schroeder-640.jpg 640w, /jack-schroeder-1024.jpg 1024w, /jack-schroeder-1600.jpg 1600w"
+            sizes="(max-width: 560px) calc(100vw - 32px), (max-width: 850px) 440px, 675px"
             alt="Portrait of Jack Schroeder"
-            width="4096"
-            height="2731"
+            width="1600"
+            height="1066"
+            decoding="async"
           />
         </figure>
       </section>

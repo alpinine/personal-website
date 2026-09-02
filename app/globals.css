@@ -48,6 +48,10 @@ a {
   color: inherit;
 }
 
+img {
+  max-width: 100%;
+}
+
 .content-shell {
   width: min(1180px, calc(100% - 64px));
   margin-inline: auto;
@@ -65,6 +69,9 @@ a {
 }
 
 .wordmark {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
   text-decoration: none;
   font-size: 1.25rem;
   letter-spacing: 0.08em;
@@ -122,6 +129,7 @@ nav {
   font-size: clamp(4.5rem, 9vw, 7.5rem);
   line-height: 0.76;
   letter-spacing: 0.01em;
+  white-space: nowrap;
 }
 
 .eyes {
@@ -203,18 +211,22 @@ nav {
 }
 
 .portrait-wrap {
-  align-self: start;
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 4 / 5;
+  align-self: center;
+  justify-self: end;
   margin: 0;
+  overflow: hidden;
+  border: var(--line) solid var(--ink);
 }
 
 .portrait-wrap img {
   width: 100%;
-  height: auto;
-  aspect-ratio: auto;
+  height: 100%;
   display: block;
-  border: var(--line) solid var(--ink);
-  object-fit: contain;
-  object-position: center;
+  object-fit: cover;
+  object-position: 48% center;
   filter: saturate(0.92) contrast(1.03);
 }
 
@@ -437,7 +449,10 @@ footer {
   }
 
   .portrait-wrap {
-    width: min(100%, 520px);
+    width: min(100%, 440px);
+    max-width: none;
+    aspect-ratio: 3 / 2;
+    justify-self: center;
     order: -1;
   }
 
@@ -480,15 +495,15 @@ footer {
 
   .banner-inner {
     min-height: 130px;
-    gap: 16px;
+    gap: 12px;
   }
 
   .banner-inner h1 {
-    font-size: clamp(3.8rem, 20vw, 5.5rem);
+    font-size: clamp(2.75rem, 13vw, 3.8rem);
   }
 
   .eyes {
-    width: 50px;
+    width: clamp(42px, 12vw, 48px);
   }
 
   .intro-section {
@@ -497,7 +512,7 @@ footer {
   }
 
   .portrait-wrap {
-    width: min(78%, 300px);
+    width: min(100%, 320px);
   }
 
   .focus-card > p {
