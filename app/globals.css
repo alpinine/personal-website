@@ -441,7 +441,9 @@ footer {
   }
 
   .portrait-wrap img {
-    aspect-ratio: 3 / 2;
+    height: auto;
+    aspect-ratio: auto;
+    object-fit: contain;
     object-position: center;
   }
 
@@ -501,7 +503,7 @@ footer {
   }
 
   .portrait-wrap {
-    width: 100%;
+    width: min(78%, 300px);
   }
 
   .focus-card > p {
